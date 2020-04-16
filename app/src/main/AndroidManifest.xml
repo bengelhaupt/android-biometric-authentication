@@ -17,6 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".zeroknowledge.fingerprint.ZeroKnowledgeActivity" />
+        <activity android:name=".direct.DirectActivity" />
     </application>
 
 </manifest>

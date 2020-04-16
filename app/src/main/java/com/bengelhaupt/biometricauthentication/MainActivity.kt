@@ -1,9 +1,10 @@
 package com.bengelhaupt.biometricauthentication
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.bengelhaupt.biometricauthentication.direct.Interaction
+import com.bengelhaupt.biometricauthentication.direct.DirectActivity
+import com.bengelhaupt.biometricauthentication.zeroknowledge.fingerprint.ZeroKnowledgeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,32 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val interaction =
-            Interaction(
-                this,
-                ::print
+        direct.setOnClickListener {
+            startActivity(
+                Intent(this, DirectActivity::class.java)
             )
-
-        interaction.start()
-
-        enroll.setOnClickListener {
-            interaction.enroll()
         }
 
-        authenticate.setOnClickListener {
-            interaction.authenticate()
-        }
-
-        fake.setOnClickListener {
-            interaction.fake()
-        }
-    }
-
-    private fun print(string: String) {
-        runOnUiThread {
-            console.append(string)
-            console.append("\n")
-            scroll.fullScroll(View.FOCUS_DOWN)
+        zeroknowledge.setOnClickListener {
+            startActivity(
+                Intent(this, ZeroKnowledgeActivity::class.java)
+            )
         }
     }
 }
